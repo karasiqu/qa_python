@@ -106,6 +106,33 @@ class TestBooksCollector:
 
         assert name not in collector.get_books_genre()
 
+    # 10. Проверка получения словаря с книгами и их жанрами
+    def test_get_books_genre(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Дюна')
+        collector.set_book_genre('Дюна', 'Фантастика')
+
+        assert collector.get_books_genre() == {'Дюна': 'Фантастика'}
+
+    # 11. Проверка получения жанра книги по ее названию
+    def test_get_book_genre(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Дюна')
+        collector.set_book_genre('Дюна', 'Фантастика')
+
+        assert collector.get_book_genre('Дюна') == 'Фантастика'
+
+    # 12. Проверка получения списка избранных книг
+    def test_get_list_of_favorites_books(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Дюна')
+        collector.add_book_in_favorites('Дюна')
+
+        assert collector.get_list_of_favorites_books() == ['Дюна']
+
 
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
